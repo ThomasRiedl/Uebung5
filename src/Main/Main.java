@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -32,36 +33,6 @@ public class Main extends Application {
         box_main.setSpacing(10);
 
 
-
-        EventHandler<MouseEvent> btn_handler =  new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                Object node = e.getSource();
-                Button btn = (Button) node;
-                String s = btn.getText();
-
-            }};
-
-        GridPane grid = new GridPane();
-
-        ArrayList<String> buttons = new ArrayList<String>();
-        buttons.add("Convert C -> F");
-        buttons.add("Convert F -> C");
-
-
-        for (String s : buttons)
-        {
-            Button b = new Button();
-            int index = buttons.indexOf(s);
-            grid.add(b, index % 3, index / 3);
-            b.setText(s);
-            b.setMinWidth(100);
-            b.setMaxHeight(100);
-            b.setStyle("-fx-font-size:20;-fx-font-weight: bold");
-            b.addEventHandler(MouseEvent.MOUSE_CLICKED, btn_handler);
-        }
-
-
         TextField textField1 = new TextField();
         Text t1 = new Text("Grad Celsius");
         TextField textField2 = new TextField();
@@ -69,10 +40,35 @@ public class Main extends Application {
         t1.setStyle("-fx-font-size:20;-fx-font-weight: bold");
         t2.setStyle("-fx-font-size:20;-fx-font-weight: bold");
 
-        box_main.getChildren().addAll(t1,textField1,t2,textField2,grid);
+        EventHandler<MouseEvent> btn_handler1 =  new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+
+            }};
+
+        EventHandler<MouseEvent> btn_handler2 =  new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+
+            }};
+
+        Button b1 = new Button();
+        Button b2 = new Button();
+        b1.setText("Convert C -> F");
+        b2.setText("Convert F -> C");
+        b1.setMinWidth(25);
+        b1.setMinHeight(25);
+        b2.setMinWidth(25);
+        b2.setMinHeight(25);
+        b1.setStyle("-fx-font-size:15;-fx-font-weight: bold");
+        b1.addEventHandler(MouseEvent.MOUSE_CLICKED, btn_handler1);
+        b2.setStyle("-fx-font-size:15;-fx-font-weight: bold");
+        b2.addEventHandler(MouseEvent.MOUSE_CLICKED, btn_handler2);
+
+        box_main.getChildren().addAll(t1,textField1,t2,textField2,b1,b2);
 
         Scene scene = new Scene(box_main);
-        stage.setTitle("Calculater");
+        stage.setTitle("Converter");
         stage.setScene(scene);
         stage.setWidth(395);
         stage.setHeight(300);
