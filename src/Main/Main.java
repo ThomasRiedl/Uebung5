@@ -44,6 +44,10 @@ public class Main extends Application {
             @Override
             public void handle(MouseEvent e) {
 
+                int a = Integer.parseInt(textField1.getText());
+                int b = (a - 32) * 5/9;
+                textField2.setText(String.valueOf(b));
+
             }};
 
         EventHandler<MouseEvent> btn_handler2 =  new EventHandler<MouseEvent>() {
